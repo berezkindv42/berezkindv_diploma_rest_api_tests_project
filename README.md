@@ -70,7 +70,7 @@
 gradle clean test
 ```
 
-## <img src="images/logos/Allure_Report.svg" width="25" height="25"  alt="Allure"/></a>Информация о тестах <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_ui_tests_project/10/allure/">Allure report</a>
+## <img src="images/logos/Allure_Report.svg" width="25" height="25"  alt="Allure"/></a>Информация о тестах в <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_ui_tests_project/10/allure/">Allure report</a>
 
 ### Основное окно
 
