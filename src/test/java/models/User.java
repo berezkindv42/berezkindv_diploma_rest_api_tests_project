@@ -18,5 +18,6 @@ public class User {
     private String password;
     private String job;
     private String token;
+    private String error;
 
 }
