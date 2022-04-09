@@ -1,4 +1,4 @@
-# Дипломный проект. API тестирование для <a target="_blank" href="https://reqres.in/">reqres.in</a>
+# Дипломный проект по API тестированию для <a target="_blank" href="https://reqres.in/">reqres.in</a>
 
 ## :pushpin: Содержание:
 
@@ -6,7 +6,7 @@
 - [Тест кейсы](#scroll-тест-кейсы)
 - [Сборка в Jenkins](#jenkins-job)
 - [Запуск из терминала](#computer-пример-запуска-из-терминала)
-- [Allure отчет](#отчет-в-allure-report)
+- [Allure отчет](#информация-о-тестах-в-allure-report)
 - [Интеграция с Allure TestOps](#интеграция-с-allure-testops)
 - [Отчет в Telegram](#уведомление-в-telegram-при-помощи-бота)
 
@@ -70,7 +70,7 @@
 gradle clean test
 ```
 
-## <img src="images/logos/Allure_Report.svg" width="25" height="25"  alt="Allure"/></a>Отчет в <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_ui_tests_project/10/allure/">Allure report</a>
+## <img src="images/logos/Allure_Report.svg" width="25" height="25"  alt="Allure"/></a>Информация о тестах <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_ui_tests_project/10/allure/">Allure report</a>
 
 ### Основное окно
 
