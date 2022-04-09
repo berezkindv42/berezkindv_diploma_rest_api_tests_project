@@ -1,5 +1,4 @@
-# Дипломный проект по UI тестированию для Gmail
-<a target="_blank" href="https://mail.google.com/mail">Gmail</a>
+# Дипломный проект. API тестирование для <a target="_blank" href="https://reqres.in/">reqres.in</a>
 
 ## :pushpin: Содержание:
 
