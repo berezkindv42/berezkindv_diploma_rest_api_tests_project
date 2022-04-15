@@ -140,6 +140,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Create user test")
     @Owner("berezkindv")
     void createResourceTest() {
+        Resource resource = new Resource();
+
         resource.setName("orange sun");
         resource.setYear(2022);
         resource.setColor("#FF5800");
@@ -166,6 +168,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Create user test")
     @Owner("berezkindv")
     void createUserTest() {
+        User user = new User();
+
         user.setFirstName(config.createUserName());
         user.setJob(config.createUserJob());
         User responseUser =
@@ -188,6 +192,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Update user test with PUT request")
     @Owner("berezkindv")
     void updateUserPutTest() {
+        User user = new User();
+
         user.setFirstName(config.createUserName());
         user.setJob(config.updateUserJob());
         User responseUser =
@@ -208,6 +214,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Update user test with PATCH request")
     @Owner("berezkindv")
     void updateUserPatchTest() {
+        User user = new User();
+
         user.setFirstName(config.createUserName());
         user.setJob(config.updateUserJob());
         User responseUser =
@@ -241,6 +249,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Successful register user test")
     @Owner("berezkindv")
     void registerSuccessfulTest() {
+        User user = new User();
+
         user.setEmail(config.registerUserEmail());
         user.setPassword(config.registerUserPassword());
         User responseUser =
@@ -262,6 +272,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Unsuccessful register user test")
     @Owner("berezkindv")
     void registerUnsuccessfulTest() {
+        User user = new User();
+
         user.setEmail("sydney@fife");
         User responseUser =
                 given()
@@ -282,6 +294,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Successful login user test")
     @Owner("berezkindv")
     void loginSuccessfulTest() {
+        User user = new User();
+
         user.setEmail(config.registerUserEmail());
         user.setPassword(config.loginUserPassword());
         User responseUser = given()
@@ -302,6 +316,8 @@ public class ApiTests extends TestBase {
     @DisplayName("Successful login user test")
     @Owner("berezkindv")
     void loginUnsuccessfulTest() {
+        User user = new User();
+
         user.setEmail("peter@klaven");
         User responseUser = given()
                 .spec(requestSpec)
