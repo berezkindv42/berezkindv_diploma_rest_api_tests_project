@@ -1,11 +1,12 @@
-package tests;
+package com.berezkindv.tests;
 
-import config.CredentialsConfig;
+import com.berezkindv.config.CredentialsConfig;
+import com.berezkindv.models.LombokModel;
+import com.berezkindv.models.Resource;
+import com.berezkindv.models.User;
+import com.berezkindv.specs.Specs;
 import io.qameta.allure.Owner;
 import io.restassured.response.Response;
-import models.LombokModel;
-import models.Resource;
-import models.User;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -13,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static specs.Specs.*;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,11 +29,11 @@ public class ApiTests extends TestBase {
     void userListTest() {
         Response response =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .when()
                         .get("/users?page=2")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().response();
 
         assertThat(response).isNotNull();
@@ -49,11 +49,11 @@ public class ApiTests extends TestBase {
     void singleUserTest() {
         LombokModel response =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .when()
                         .get("/users/10")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().as(LombokModel.class);
         Integer expectedId = 10;
         String expectedFirstName = "Byron";
@@ -71,11 +71,11 @@ public class ApiTests extends TestBase {
     @Owner("berezkindv")
     void singleUserNotFoundTest() {
         given()
-                .spec(requestSpec)
+                .spec(Specs.requestSpec)
                 .when()
                 .get("/users/13")
                 .then()
-                .spec(responseSpec404);
+                .spec(Specs.responseSpec404);
     }
 
     @Test
@@ -85,11 +85,11 @@ public class ApiTests extends TestBase {
     void resourceListTest() {
         Response response =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .when()
                         .get("/unknown")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().response();
         Integer expectedTotal = 12;
 
@@ -105,10 +105,10 @@ public class ApiTests extends TestBase {
     void singleResourceTest() {
         Response response =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .when().get("/unknown/4")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().response();
         String expectedName = "aqua sky";
         Integer expectedYear = 2003;
@@ -128,11 +128,11 @@ public class ApiTests extends TestBase {
     @Owner("berezkindv")
     void singleResourceNotFoundTest() {
         given()
-                .spec(requestSpec)
+                .spec(Specs.requestSpec)
                 .when()
                 .get("/unknown/23")
                 .then()
-                .spec(responseSpec404);
+                .spec(Specs.responseSpec404);
     }
 
     @Test
@@ -148,12 +148,12 @@ public class ApiTests extends TestBase {
         resource.setPantoneValue("16-1257");
         Resource responseResource =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .body(resource)
                         .when()
                         .post("/unknown")
                         .then()
-                        .spec(responseSpec201)
+                        .spec(Specs.responseSpec201)
                         .extract().as(Resource.class);
 
         assertNotEquals(responseResource.getId(), null);
@@ -174,12 +174,12 @@ public class ApiTests extends TestBase {
         user.setJob(config.createUserJob());
         User responseUser =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .body(user)
                         .when()
                         .post("/user")
                         .then()
-                        .spec(responseSpec201)
+                        .spec(Specs.responseSpec201)
                         .extract().as(User.class);
 
         assertNotEquals(responseUser.getId(), null);
@@ -198,12 +198,12 @@ public class ApiTests extends TestBase {
         user.setJob(config.updateUserJob());
         User responseUser =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .body(user)
                         .when()
                         .put("/user/2")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().as(User.class);
 
         assertEquals(user.getJob(), responseUser.getJob());
@@ -220,12 +220,12 @@ public class ApiTests extends TestBase {
         user.setJob(config.updateUserJob());
         User responseUser =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .body(user)
                         .when()
                         .patch("/user/2")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().as(User.class);
 
         assertEquals(user.getJob(), responseUser.getJob());
@@ -237,11 +237,11 @@ public class ApiTests extends TestBase {
     @Owner("berezkindv")
     void deleteUserTest() {
         given()
-                .spec(requestSpec)
+                .spec(Specs.requestSpec)
                 .when()
                 .delete("/user/2")
                 .then()
-                .spec(responseSpec204);
+                .spec(Specs.responseSpec204);
     }
 
     @Test
@@ -255,12 +255,12 @@ public class ApiTests extends TestBase {
         user.setPassword(config.registerUserPassword());
         User responseUser =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .body(user)
                         .when()
                         .post("/register")
                         .then()
-                        .spec(responseSpec200)
+                        .spec(Specs.responseSpec200)
                         .extract().as(User.class);
 
         assertThat(responseUser.getId()).isNotNull();
@@ -277,12 +277,12 @@ public class ApiTests extends TestBase {
         user.setEmail("sydney@fife");
         User responseUser =
                 given()
-                        .spec(requestSpec)
+                        .spec(Specs.requestSpec)
                         .body(user)
                         .when()
                         .post("/register")
                         .then()
-                        .spec(responseSpec400)
+                        .spec(Specs.responseSpec400)
                         .extract().as(User.class);
         String expectedError = "Missing password";
 
@@ -299,12 +299,12 @@ public class ApiTests extends TestBase {
         user.setEmail(config.registerUserEmail());
         user.setPassword(config.loginUserPassword());
         User responseUser = given()
-                .spec(requestSpec)
+                .spec(Specs.requestSpec)
                 .body(user)
                 .when()
                 .post("/login")
                 .then()
-                .spec(responseSpec200)
+                .spec(Specs.responseSpec200)
                 .extract().as(User.class);
 
         assertThat(responseUser.getToken()).isNotNull();
@@ -320,12 +320,12 @@ public class ApiTests extends TestBase {
 
         user.setEmail("peter@klaven");
         User responseUser = given()
-                .spec(requestSpec)
+                .spec(Specs.requestSpec)
                 .body(user)
                 .when()
                 .post("/login")
                 .then()
-                .spec(responseSpec400)
+                .spec(Specs.responseSpec400)
                 .extract().as(User.class);
         String expectedError = "Missing password";
 

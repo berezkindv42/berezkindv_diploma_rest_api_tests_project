@@ -1,4 +1,4 @@
-package helpers;
+package com.berezkindv.helpers;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 

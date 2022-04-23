@@ -1,4 +1,4 @@
-package tests;
+package com.berezkindv.tests;
 
 import com.codeborne.selenide.Configuration;
 import io.restassured.RestAssured;
