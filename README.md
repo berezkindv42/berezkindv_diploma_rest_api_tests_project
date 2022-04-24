@@ -4,8 +4,8 @@
 
 - [Технологии и инструменты](#rocket-технологии-и-инструменты)
 - [Тест кейсы](#scroll-тест-кейсы)
+- [Пример запуска из терминала](#computer-пример-запуска-из-терминала)
 - [Сборка в Jenkins](#jenkins-job)
-- [Запуск из терминала](#computer-пример-запуска-из-терминала)
 - [Allure отчет](#информация-о-тестах-в-allure-report)
 - [Интеграция с Allure TestOps](#интеграция-с-allure-testops)
 - [Отчет в Telegram](#уведомление-в-telegram-при-помощи-бота)
@@ -44,57 +44,74 @@
 
 [К содержанию](#pushpin-содержание)
 
-## <img src="images/logos/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a>Jenkins job
-### <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_rest_api_tests_project/">Сборка в Jenkins</a>
-
-Инструкция по запуску сборки в Jenkins:
-<p align="center">
-<a href="https://jenkins.autotests.cloud/job/berezkindv_diploma_rest_api_tests_project/"><img src="images/screenshots/jenkins_parameters.png" alt="Jenkins"/></a>
-</p>
-
-По завершении сборки можно посмотреть Allure отчет или перейти к Allure TestOps:
-<p align="center">
-<a href="https://jenkins.autotests.cloud/job/berezkindv_diploma_rest_api_tests_project/"><img src="images/screenshots/jenkins_reports.png" alt="Jenkins"/></a>
-</p>
-
-### Параметры сборки в Jenkins:
-
-- BRANCH - выбор ветки репозитория GitHub (по умолчанию main)
-- TASK - выбор задачи (настройка build.gradle, по умолчанию api_tests) 
-- ALLURE_NOTIFICATIONS_VERSION - выбор версии библиотеки <a target="_blank" href="https://github.com/qa-guru/allure-notifications">Allure notifications</a> (по умолчанию 2.2.3)
-
-[К содержанию](#pushpin-содержание)
-
 ### :computer: Пример запуска из терминала
 
-Локальный запуск:
+Запуск из терминала выглядит следующим образом: \
+```gradle clean task```
+```task``` - в данном случае один ui_tests
+
+Пример:
 ```bash
 gradle clean test
 ```
 
 [К содержанию](#pushpin-содержание)
 
+## <img src="images/logos/Jenkins.svg" width="25" height="25"  alt="Jenkins"/></a>Jenkins job
+### <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_rest_api_tests_project/">Сборка в Jenkins</a>
+
+#### Инструкция по запуску сборки в Jenkins:
+
+<p align="center">
+<a href="https://jenkins.autotests.cloud/job/berezkindv_diploma_rest_api_tests_project/"><img src="images/screenshots/jenkins_parameters.png" alt="Jenkins"/></a>
+</p>
+
+#### Параметры сборки в Jenkins:
+
+- ```BRANCH``` - выбор ветки репозитория GitHub (по умолчанию main)
+- ```TASK``` - выбор задачи (настройка build.gradle, по умолчанию api_tests)
+
+По завершении сборки можно посмотреть Allure отчет или перейти к Allure TestOps:
+<p align="center">
+<a href="https://jenkins.autotests.cloud/job/berezkindv_diploma_rest_api_tests_project/"><img src="images/screenshots/jenkins_reports.png" alt="Jenkins"/></a>
+</p>
+
+
+
+[К содержанию](#pushpin-содержание)
+
 ## <img src="images/logos/Allure_Report.svg" width="25" height="25"  alt="Allure"/></a>Информация о тестах в <a target="_blank" href="https://jenkins.autotests.cloud/job/berezkindv_diploma_ui_tests_project/10/allure/">Allure report</a>
 
-### Основное окно
+По завершении сборки можно обратиться к Allure отчету. \
+В который входит:
+- Протоколирование степов
+- Графики прохождения тестов
+- Таймлайн
+- Различная сортировка тестов по статусу
+- И многое другое
+
+Также к каждому тесту прилагаются аттачменты содержащие скриншоты, xml с деревом документа, лог консоли и видео прохождения теста.
+
+
+#### Основное окно
 
 <p align="center">
 <img title="Allure Overview Dashboard" src="images/screenshots/allure_report_dashboard.png">
 </p>
 
-### Вкладка тесты
+#### Вкладка тесты
 
 <p align="center">
 <img title="Allure Tests" src="images/screenshots/allure_report_test_cases.png">
 </p>
 
-### Вкладка графики
+#### Вкладка графики
 
 <p align="center">
 <img title="Allure Graphics" src="images/screenshots/allure_report_graphs.png">
 </p>
 
-### В проекте используется кастомное оформление отчетов запросов и ответов
+#### В проекте используется кастомное оформление протоколирования запросов и ответов
 
 <p align="center">
 <img title="Allure Graphics" src="images/screenshots/allure_report_custom_response.png">
@@ -104,22 +121,24 @@ gradle clean test
 
 ## <img src="images/logos/Allure_EE.svg" width="25" height="25"  alt="Allure"/></a>Интеграция с <a target="_blank" href="https://allure.autotests.cloud/launch/12075">Allure TestOps</a>
 
-### Дашборд
+Так же можно обратиться к Allure TestOps для дальнейшей автоматизации проекта.
+
+#### Дашборд
 
 <p align="center">
 <img title="Allure TestOps Dashboard" src="images/screenshots/teastops_dashboard.png">
 </p>
 
-### Тест-кейсы
+#### Тест-кейсы
 
 <p align="center">
 <img title="Allure TestOps Tests" src="images/screenshots/teastops_test_cases.png">
 </p>
 
-### История запусков сборки
+#### История запусков сборки
 
 <p align="center">
-<img title="Allure TestOps Tests" src="images/screenshots/teastops_test_cases.png">
+<img title="Allure TestOps Tests" src="images/screenshots/teastops_job_history.png">
 </p>
 
 [К содержанию](#pushpin-содержание)
